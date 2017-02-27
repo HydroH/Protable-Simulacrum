@@ -8,8 +8,8 @@ namespace Portable_Simulacrum
 {
     public static class Data
     {
-        public static int timeLimit=180;
-        public static int cycles = 300;
+        public static int timeLimit = 180;
+        public static int cycles = 200;
 
         public enum Hitpoint
         {
@@ -121,6 +121,13 @@ namespace Portable_Simulacrum
             Cap,
         }
         public static int elemDiff = (int)ModProp.Cold - (int)DamageType.Cold;
+
+        public enum WeaponType
+        {
+            Rifle,
+            Shotgun,
+            Secondary,
+        }
 
         public struct Simdata
         {

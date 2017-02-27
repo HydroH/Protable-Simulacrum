@@ -13,5 +13,11 @@ namespace Portable_Simulacrum
             {   0.15,   0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      });
         public static Mod HeavyCaliber = new Mod(new double[]
             {   0.15,   0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      });
+
+        public static SortedDictionary<string, Mod> rifleModList = new SortedDictionary<string, Mod>
+        {
+            {"膛线"       , Serration         },
+            {"重口径"     , HeavyCaliber      },
+        };
     }
 }

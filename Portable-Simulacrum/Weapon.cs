@@ -17,7 +17,8 @@ namespace Portable_Simulacrum
         public double pelletStatChan { get; private set; }
         public double reload { get; private set; }
         public int clip { get; private set; }
-        public Weapon(Damage _damage, double _multiShot, double _fireRate, double _critChan, double _critMult, double _totalStatChan, double _reload, int _clip, bool raw = false)
+        public Data.WeaponType type { get; private set; }
+        public Weapon(Damage _damage, double _multiShot, double _fireRate, double _critChan, double _critMult, double _totalStatChan, double _reload, int _clip, Data.WeaponType _type, bool raw = false)
         {
             damage = raw ? _damage.Scale(1 / _multiShot) : _damage;
             multiShot = _multiShot;
@@ -28,8 +29,9 @@ namespace Portable_Simulacrum
             pelletStatChan = (totalStatChan >= 1) ? 1 : 1 - Math.Pow((1 - totalStatChan), 1 / multiShot);
             reload = _reload;
             clip = _clip;
+            type = _type;
         }
-        public Weapon(double[] _dmgArray, double _multiShot, double _fireRate, double _critChan, double _critMult, double _totalStatChan, double _reload, int _clip, bool raw = false)
+        public Weapon(double[] _dmgArray, double _multiShot, double _fireRate, double _critChan, double _critMult, double _totalStatChan, double _reload, int _clip, Data.WeaponType _type, bool raw = false)
         {
             damage = new Damage(_dmgArray);
             if (raw) damage = damage.Scale(1 / _multiShot);
@@ -41,6 +43,7 @@ namespace Portable_Simulacrum
             pelletStatChan = (totalStatChan >= 1) ? 1 : 1 - Math.Pow((1 - totalStatChan), 1 / multiShot);
             reload = _reload;
             clip = _clip;
+            type = _type;
         }
 
         public Weapon Modify(Mod mod)
@@ -212,7 +215,7 @@ namespace Portable_Simulacrum
 
         public Weapon Clone()
         {
-            return new Weapon(damage.Clone(), multiShot, fireRate, critChan, critMult, totalStatChan, reload, clip);
+            return new Weapon(damage.Clone(), multiShot, fireRate, critChan, critMult, totalStatChan, reload, clip, type);
         }
     }
 }

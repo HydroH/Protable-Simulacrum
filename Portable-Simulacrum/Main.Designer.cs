@@ -37,7 +37,13 @@
             this.lblEnemyType = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.nudEnemyLevel = new System.Windows.Forms.NumericUpDown();
+            this.lblWeapon = new System.Windows.Forms.Label();
+            this.cbbWeapon = new System.Windows.Forms.ComboBox();
+            this.dgvMod = new System.Windows.Forms.DataGridView();
+            this.dgvcModType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvcModLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMod)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCalc
@@ -53,7 +59,7 @@
             // cbbEnemyType
             // 
             this.cbbEnemyType.FormattingEnabled = true;
-            this.cbbEnemyType.Location = new System.Drawing.Point(358, 16);
+            this.cbbEnemyType.Location = new System.Drawing.Point(402, 270);
             this.cbbEnemyType.Name = "cbbEnemyType";
             this.cbbEnemyType.Size = new System.Drawing.Size(121, 23);
             this.cbbEnemyType.TabIndex = 11;
@@ -97,7 +103,7 @@
             // lblEnemyType
             // 
             this.lblEnemyType.AutoSize = true;
-            this.lblEnemyType.Location = new System.Drawing.Point(284, 19);
+            this.lblEnemyType.Location = new System.Drawing.Point(329, 271);
             this.lblEnemyType.Name = "lblEnemyType";
             this.lblEnemyType.Size = new System.Drawing.Size(67, 15);
             this.lblEnemyType.TabIndex = 21;
@@ -106,7 +112,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(284, 65);
+            this.label1.Location = new System.Drawing.Point(329, 314);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 22;
@@ -114,7 +120,7 @@
             // 
             // nudEnemyLevel
             // 
-            this.nudEnemyLevel.Location = new System.Drawing.Point(358, 60);
+            this.nudEnemyLevel.Location = new System.Drawing.Point(403, 309);
             this.nudEnemyLevel.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -124,11 +130,54 @@
             this.nudEnemyLevel.Size = new System.Drawing.Size(120, 25);
             this.nudEnemyLevel.TabIndex = 23;
             // 
+            // lblWeapon
+            // 
+            this.lblWeapon.AutoSize = true;
+            this.lblWeapon.Location = new System.Drawing.Point(30, 24);
+            this.lblWeapon.Name = "lblWeapon";
+            this.lblWeapon.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblWeapon.Size = new System.Drawing.Size(37, 15);
+            this.lblWeapon.TabIndex = 25;
+            this.lblWeapon.Text = "武器";
+            // 
+            // cbbWeapon
+            // 
+            this.cbbWeapon.FormattingEnabled = true;
+            this.cbbWeapon.Location = new System.Drawing.Point(73, 19);
+            this.cbbWeapon.Name = "cbbWeapon";
+            this.cbbWeapon.Size = new System.Drawing.Size(121, 23);
+            this.cbbWeapon.TabIndex = 24;
+            // 
+            // dgvMod
+            // 
+            this.dgvMod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvcModType,
+            this.dgvcModLevel});
+            this.dgvMod.Location = new System.Drawing.Point(33, 68);
+            this.dgvMod.Name = "dgvMod";
+            this.dgvMod.RowTemplate.Height = 27;
+            this.dgvMod.Size = new System.Drawing.Size(278, 297);
+            this.dgvMod.TabIndex = 26;
+            // 
+            // dgvcModType
+            // 
+            this.dgvcModType.HeaderText = "MOD名称";
+            this.dgvcModType.Name = "dgvcModType";
+            // 
+            // dgvcModLevel
+            // 
+            this.dgvcModLevel.HeaderText = "MOD等级";
+            this.dgvcModLevel.Name = "dgvcModLevel";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 488);
+            this.Controls.Add(this.dgvMod);
+            this.Controls.Add(this.lblWeapon);
+            this.Controls.Add(this.cbbWeapon);
             this.Controls.Add(this.nudEnemyLevel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblEnemyType);
@@ -141,6 +190,7 @@
             this.Name = "Main";
             this.Text = "伪·幻影装置";
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMod)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +206,11 @@
         private System.Windows.Forms.Label lblEnemyType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudEnemyLevel;
+        private System.Windows.Forms.Label lblWeapon;
+        private System.Windows.Forms.ComboBox cbbWeapon;
+        private System.Windows.Forms.DataGridView dgvMod;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dgvcModType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcModLevel;
     }
 }
 
