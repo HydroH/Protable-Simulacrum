@@ -122,6 +122,7 @@ namespace Portable_Simulacrum
         {
             Rifle,
             Shotgun,
+            Bow,
             Secondary,
         }
 

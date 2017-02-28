@@ -36,7 +36,7 @@ namespace Portable_Simulacrum
 
             for (int i = 0; i < Data.cycles; i++)
             {
-                temp = ((Weapon)cbbWeapon.SelectedValue).SimKill(((Enemy)cbbEnemyType.SelectedValue).Scale((int)nudEnemyLevel.Value), mod.Clone());
+                temp = ((Weapon)cbbWeapon.SelectedValue).SimKill(((Enemy)cbbEnemyType.SelectedValue).Scale((int)nudEnemyLevel.Value), mod.Clone(), cbHeadshot.Checked);
                 if (temp.time >= Data.timeLimit)
                 {
                     timeExceed = true;
@@ -53,12 +53,26 @@ namespace Portable_Simulacrum
 
         private void btnAddMod_Click(object sender, EventArgs e)
         {
-            int index = dgvMod.Rows.Add();
-            dgvMod.Rows[index].Cells[0].Value = cbbModList.Text;
-            dgvMod.Rows[index].Cells[1].Value = (int)nudModLevel.Value;
-            dgvMod.Rows[index].Cells[2].Value = cbbModList.SelectedValue;
-            
-            ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)dgvMod.Rows[index].Cells[0].Value, (Mod)dgvMod.Rows[index].Cells[2].Value));
+            if (cbbModList.Text == "裂罅MOD")
+            {
+                AddRiven newRiven = new AddRiven();
+                if (newRiven.ShowDialog() == DialogResult.OK)
+                {
+                    int index = dgvMod.Rows.Add();
+                    dgvMod.Rows[index].Cells[0].Value = "裂罅MOD";
+                    dgvMod.Rows[index].Cells[1].Value = 0;
+                    dgvMod.Rows[index].Cells[2].Value = newRiven.rivenMod;
+                    ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)cbbModList.Text, (Mod)cbbModList.SelectedValue));
+                }
+            }
+            else
+            {
+                int index = dgvMod.Rows.Add();
+                dgvMod.Rows[index].Cells[0].Value = cbbModList.Text;
+                dgvMod.Rows[index].Cells[1].Value = (int)nudModLevel.Value;
+                dgvMod.Rows[index].Cells[2].Value = cbbModList.SelectedValue;
+                ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)dgvMod.Rows[index].Cells[0].Value, (Mod)dgvMod.Rows[index].Cells[2].Value));
+            }
         }
 
         private void dgvMod_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)

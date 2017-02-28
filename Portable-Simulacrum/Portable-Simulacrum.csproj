@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRiven.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRiven.Designer.cs">
+      <DependentUpon>AddRiven.cs</DependentUpon>
+    </Compile>
     <Compile Include="Damage.cs" />
     <Compile Include="DuplicateKeyComparer.cs" />
     <Compile Include="Enemy.cs" />
@@ -63,6 +69,9 @@
     <Compile Include="Data.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="WeaponList.cs" />
+    <EmbeddedResource Include="AddRiven.resx">
+      <DependentUpon>AddRiven.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
