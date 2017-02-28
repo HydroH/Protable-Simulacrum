@@ -47,6 +47,7 @@
             this.btnAddMod = new System.Windows.Forms.Button();
             this.nudModLevel = new System.Windows.Forms.NumericUpDown();
             this.cbHeadshot = new System.Windows.Forms.CheckBox();
+            this.lblStats = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudModLevel)).BeginInit();
@@ -54,7 +55,7 @@
             // 
             // btnCalc
             // 
-            this.btnCalc.Location = new System.Drawing.Point(450, 374);
+            this.btnCalc.Location = new System.Drawing.Point(464, 419);
             this.btnCalc.Name = "btnCalc";
             this.btnCalc.Size = new System.Drawing.Size(75, 23);
             this.btnCalc.TabIndex = 10;
@@ -65,7 +66,7 @@
             // cbbEnemyType
             // 
             this.cbbEnemyType.FormattingEnabled = true;
-            this.cbbEnemyType.Location = new System.Drawing.Point(404, 258);
+            this.cbbEnemyType.Location = new System.Drawing.Point(418, 337);
             this.cbbEnemyType.Name = "cbbEnemyType";
             this.cbbEnemyType.Size = new System.Drawing.Size(121, 23);
             this.cbbEnemyType.TabIndex = 11;
@@ -73,7 +74,7 @@
             // lblResultTime
             // 
             this.lblResultTime.AutoSize = true;
-            this.lblResultTime.Location = new System.Drawing.Point(494, 409);
+            this.lblResultTime.Location = new System.Drawing.Point(508, 475);
             this.lblResultTime.Name = "lblResultTime";
             this.lblResultTime.Size = new System.Drawing.Size(31, 15);
             this.lblResultTime.TabIndex = 13;
@@ -82,7 +83,7 @@
             // lblResultShots
             // 
             this.lblResultShots.AutoSize = true;
-            this.lblResultShots.Location = new System.Drawing.Point(494, 440);
+            this.lblResultShots.Location = new System.Drawing.Point(508, 506);
             this.lblResultShots.Name = "lblResultShots";
             this.lblResultShots.Size = new System.Drawing.Size(31, 15);
             this.lblResultShots.TabIndex = 14;
@@ -91,7 +92,7 @@
             // lblLabelShots
             // 
             this.lblLabelShots.AutoSize = true;
-            this.lblLabelShots.Location = new System.Drawing.Point(421, 440);
+            this.lblLabelShots.Location = new System.Drawing.Point(435, 506);
             this.lblLabelShots.Name = "lblLabelShots";
             this.lblLabelShots.Size = new System.Drawing.Size(67, 15);
             this.lblLabelShots.TabIndex = 20;
@@ -100,7 +101,7 @@
             // lblLabelTime
             // 
             this.lblLabelTime.AutoSize = true;
-            this.lblLabelTime.Location = new System.Drawing.Point(435, 409);
+            this.lblLabelTime.Location = new System.Drawing.Point(449, 475);
             this.lblLabelTime.Name = "lblLabelTime";
             this.lblLabelTime.Size = new System.Drawing.Size(52, 15);
             this.lblLabelTime.TabIndex = 19;
@@ -109,7 +110,7 @@
             // lblEnemyType
             // 
             this.lblEnemyType.AutoSize = true;
-            this.lblEnemyType.Location = new System.Drawing.Point(331, 259);
+            this.lblEnemyType.Location = new System.Drawing.Point(345, 338);
             this.lblEnemyType.Name = "lblEnemyType";
             this.lblEnemyType.Size = new System.Drawing.Size(67, 15);
             this.lblEnemyType.TabIndex = 21;
@@ -118,7 +119,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(331, 302);
+            this.label1.Location = new System.Drawing.Point(345, 381);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 22;
@@ -126,7 +127,7 @@
             // 
             // nudEnemyLevel
             // 
-            this.nudEnemyLevel.Location = new System.Drawing.Point(405, 297);
+            this.nudEnemyLevel.Location = new System.Drawing.Point(419, 376);
             this.nudEnemyLevel.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -151,7 +152,7 @@
             this.cbbWeapon.FormattingEnabled = true;
             this.cbbWeapon.Location = new System.Drawing.Point(73, 19);
             this.cbbWeapon.Name = "cbbWeapon";
-            this.cbbWeapon.Size = new System.Drawing.Size(121, 23);
+            this.cbbWeapon.Size = new System.Drawing.Size(157, 23);
             this.cbbWeapon.TabIndex = 24;
             // 
             // dgvMod
@@ -165,8 +166,10 @@
             this.dgvMod.Location = new System.Drawing.Point(33, 68);
             this.dgvMod.Name = "dgvMod";
             this.dgvMod.RowTemplate.Height = 27;
-            this.dgvMod.Size = new System.Drawing.Size(278, 297);
+            this.dgvMod.Size = new System.Drawing.Size(278, 387);
             this.dgvMod.TabIndex = 26;
+            this.dgvMod.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMod_CellEndEdit);
+            this.dgvMod.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvMod_UserDeletedRow);
             this.dgvMod.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvMod_UserDeletingRow);
             // 
             // dgvcModName
@@ -192,14 +195,14 @@
             // cbbModList
             // 
             this.cbbModList.FormattingEnabled = true;
-            this.cbbModList.Location = new System.Drawing.Point(33, 401);
+            this.cbbModList.Location = new System.Drawing.Point(33, 496);
             this.cbbModList.Name = "cbbModList";
             this.cbbModList.Size = new System.Drawing.Size(121, 23);
             this.cbbModList.TabIndex = 28;
             // 
             // btnAddMod
             // 
-            this.btnAddMod.Location = new System.Drawing.Point(236, 400);
+            this.btnAddMod.Location = new System.Drawing.Point(236, 495);
             this.btnAddMod.Name = "btnAddMod";
             this.btnAddMod.Size = new System.Drawing.Size(75, 26);
             this.btnAddMod.TabIndex = 27;
@@ -209,7 +212,7 @@
             // 
             // nudModLevel
             // 
-            this.nudModLevel.Location = new System.Drawing.Point(160, 401);
+            this.nudModLevel.Location = new System.Drawing.Point(160, 496);
             this.nudModLevel.Maximum = new decimal(new int[] {
             10,
             0,
@@ -222,18 +225,27 @@
             // cbHeadshot
             // 
             this.cbHeadshot.AutoSize = true;
-            this.cbHeadshot.Location = new System.Drawing.Point(466, 339);
+            this.cbHeadshot.Location = new System.Drawing.Point(353, 423);
             this.cbHeadshot.Name = "cbHeadshot";
             this.cbHeadshot.Size = new System.Drawing.Size(59, 19);
             this.cbHeadshot.TabIndex = 30;
             this.cbHeadshot.Text = "爆头";
             this.cbHeadshot.UseVisualStyleBackColor = true;
             // 
+            // lblStats
+            // 
+            this.lblStats.AutoSize = true;
+            this.lblStats.Location = new System.Drawing.Point(345, 22);
+            this.lblStats.Name = "lblStats";
+            this.lblStats.Size = new System.Drawing.Size(0, 15);
+            this.lblStats.TabIndex = 31;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 488);
+            this.ClientSize = new System.Drawing.Size(577, 556);
+            this.Controls.Add(this.lblStats);
             this.Controls.Add(this.cbHeadshot);
             this.Controls.Add(this.nudModLevel);
             this.Controls.Add(this.cbbModList);
@@ -280,6 +292,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcModLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModInstance;
         private System.Windows.Forms.CheckBox cbHeadshot;
+        private System.Windows.Forms.Label lblStats;
     }
 }
 

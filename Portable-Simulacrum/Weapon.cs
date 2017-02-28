@@ -47,11 +47,12 @@ namespace Portable_Simulacrum
         public Weapon Modify(Mod mod)
         {
             Weapon modWeapon = Clone();
-            modWeapon.multiShot *= (1 + mod.multiplier[(int)Data.ModProp.Multi]);
             modWeapon.critChan*= (1 + mod.multiplier[(int)Data.ModProp.CritChan]);
             modWeapon.critMult *= (1 + mod.multiplier[(int)Data.ModProp.CritMult]);
             modWeapon.totalStatChan *= (1 + mod.multiplier[(int)Data.ModProp.StatChan]);
             modWeapon.pelletStatChan = (modWeapon.totalStatChan >= 1) ? 1 : 1 - Math.Pow((1 - modWeapon.totalStatChan), 1 / modWeapon.multiShot);
+            modWeapon.multiShot *= (1 + mod.multiplier[(int)Data.ModProp.Multi]);
+            modWeapon.totalStatChan = 1 - Math.Pow(1 - modWeapon.pelletStatChan, modWeapon.multiShot);
             modWeapon.fireRate *= (1 + mod.multiplier[(int)Data.ModProp.FireRate] * (type == Data.WeaponType.Bow ? 2 : 1));
             modWeapon.clip *= (int)Math.Round(1 + mod.multiplier[(int)Data.ModProp.Clip]);
             modWeapon.reload /= (1 + mod.multiplier[(int)Data.ModProp.Reload]);

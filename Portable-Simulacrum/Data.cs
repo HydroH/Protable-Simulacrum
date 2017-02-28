@@ -44,21 +44,21 @@ namespace Portable_Simulacrum
             Cap,
         }
 
-        public static Dictionary<string, DamageType> damageList = new Dictionary<string, DamageType>
+        public static Dictionary<DamageType, string> damageText = new Dictionary<DamageType, string>
         {
-            {"冲击", DamageType.Impact        },
-            {"穿刺", DamageType.Puncture      },
-            {"切割", DamageType.Slash         },
-            {"冰冻", DamageType.Cold          },
-            {"电击", DamageType.Electricity   },
-            {"火焰", DamageType.Heat          },
-            {"毒素", DamageType.Toxin         },
-            {"爆炸", DamageType.Blast         },
-            {"腐蚀", DamageType.Corrosive     },
-            {"毒气", DamageType.Gas           },
-            {"磁力", DamageType.Magnetic      },
-            {"辐射", DamageType.Radiation     },
-            {"病毒", DamageType.Viral         },
+            {DamageType.Impact       , "冲击" },
+            {DamageType.Puncture     , "穿刺" },
+            {DamageType.Slash        , "切割" },
+            {DamageType.Cold         , "冰冻" },
+            {DamageType.Electricity  , "电击" },
+            {DamageType.Heat         , "火焰" },
+            {DamageType.Toxin        , "毒素" },
+            {DamageType.Blast        , "爆炸" },
+            {DamageType.Corrosive    , "腐蚀" },
+            {DamageType.Gas          , "毒气" },
+            {DamageType.Magnetic     , "磁力" },
+            {DamageType.Radiation    , "辐射" },
+            {DamageType.Viral        , "病毒" },
         };
 
         public static double[,] damageMult =

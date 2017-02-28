@@ -23,6 +23,36 @@ namespace Portable_Simulacrum
             cbbModList.ValueMember = "Value";
         }
 
+        public void ShowStats()
+        {
+            Mod mod = new Mod();
+            foreach (DataGridViewRow row in dgvMod.Rows)
+            {
+                if (row.Cells[0].Value == null || row.Cells[1].Value == null) break;
+                mod.Combine(((Mod)row.Cells[2].Value).Scale(Convert.ToInt32(row.Cells[1].Value.ToString())));
+            }
+            Weapon modWeapon = ((Weapon)cbbWeapon.SelectedValue).Modify(mod);
+
+            string statText = "";
+            for (int i = 0; i < (int)Data.DamageType.Cap; i++)
+            {
+                if (modWeapon.damage.dmgArray[i] != 0)
+                {
+                    statText += Data.damageText[(Data.DamageType)i] + " " + (modWeapon.damage.dmgArray[i] * modWeapon.multiShot).ToString("N2") + "\n";
+                }
+            }
+            statText += "\n";
+            statText += "多重射击 " + modWeapon.multiShot.ToString("N2") + "\n";
+            statText += "暴击几率 " + (100 * modWeapon.critChan).ToString("N2") + "%\n";
+            statText += "暴击倍率 " + modWeapon.critMult.ToString("N2") + "x\n";
+            statText += "总触发几率 " + (100 * modWeapon.totalStatChan).ToString("N2") + "%\n";
+            statText += "弹片触发几率 " + (100 * modWeapon.pelletStatChan).ToString("N2") + "%\n";
+            statText += "射速 " + modWeapon.fireRate.ToString("N2") + "\n";
+            statText += "换弹时间 " + modWeapon.reload.ToString("N2") + "\n";
+            statText += "弹匣 " + modWeapon.clip.ToString("N2") + "\n";
+            lblStats.Text = statText;
+        }
+
         private void btnCalc_Click(object sender, EventArgs e)
         {
             Data.Simdata result = new Data.Simdata(0, 0), temp = new Data.Simdata();
@@ -63,6 +93,7 @@ namespace Portable_Simulacrum
                     dgvMod.Rows[index].Cells[1].Value = 0;
                     dgvMod.Rows[index].Cells[2].Value = newRiven.rivenMod;
                     ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)cbbModList.Text, (Mod)cbbModList.SelectedValue));
+                    ShowStats();
                 }
             }
             else
@@ -72,6 +103,7 @@ namespace Portable_Simulacrum
                 dgvMod.Rows[index].Cells[1].Value = (int)nudModLevel.Value;
                 dgvMod.Rows[index].Cells[2].Value = cbbModList.SelectedValue;
                 ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)dgvMod.Rows[index].Cells[0].Value, (Mod)dgvMod.Rows[index].Cells[2].Value));
+                ShowStats();
             }
         }
 
@@ -79,6 +111,16 @@ namespace Portable_Simulacrum
         {
 
             ((BindingSource)cbbModList.DataSource).Add(new KeyValuePair<string, Mod>((string)e.Row.Cells[0].Value, (Mod)e.Row.Cells[2].Value));
+        }
+
+        private void dgvMod_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            ShowStats();
+        }
+
+        private void dgvMod_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowStats();
         }
     }
 }

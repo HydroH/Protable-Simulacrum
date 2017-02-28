@@ -45,9 +45,6 @@ namespace Portable_Simulacrum
             {
                 dmgArray[i] *= (1 + mod.multiplier[(int)Data.ModProp.Base]);
             }
-            dmgArray[(int)Data.DamageType.Impact] *= (1 + mod.multiplier[(int)Data.ModProp.Impact]);
-            dmgArray[(int)Data.DamageType.Puncture] *= (1 + mod.multiplier[(int)Data.ModProp.Puncture]);
-            dmgArray[(int)Data.DamageType.Slash] *= (1 + mod.multiplier[(int)Data.ModProp.Slash]);
             totalDmg = 0;
             for (int i = 0; i < dmgArray.Count(); i++)
             {
@@ -71,6 +68,10 @@ namespace Portable_Simulacrum
             {
                 dmgArray[(int)elemA] += totalDmg * (mod.multiplier[(int)elemA + Data.elemDiff]);
             }
+            
+            dmgArray[(int)Data.DamageType.Impact] *= (1 + mod.multiplier[(int)Data.ModProp.Impact]);
+            dmgArray[(int)Data.DamageType.Puncture] *= (1 + mod.multiplier[(int)Data.ModProp.Puncture]);
+            dmgArray[(int)Data.DamageType.Slash] *= (1 + mod.multiplier[(int)Data.ModProp.Slash]);
 
             totalDmg = 0;
             for (int i = 0; i < dmgArray.Count(); i++)
