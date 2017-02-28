@@ -19,6 +19,10 @@ namespace Portable_Simulacrum
                 {   1.2,    4.8,    6.0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      },  1,      15.0,   0.30,   3.0,    0.10,   3.0,    200,     Data.WeaponType.Rifle,     true);
         public static Weapon Ignis = new Weapon(new double[]
                 {   0,      0,      0,      0,      0,      27.0,   0,      0,      0,      0,      0,      0,      0,      0,      },  1,      10.0,   0.05,   2.0,    0.25,   2.0,    150,     Data.WeaponType.Rifle,     true);
+        public static Weapon Hek = new Weapon(new double[]
+                {   78.75,  341.25, 105.0,  0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      },  7,      2.17,   0.25,   2.0,    0.25,   2.0,    4,       Data.WeaponType.Shotgun,   true);
+        public static Weapon StrunWraith = new Weapon(new double[]
+                {   195.0,  45.0,   60.0,   0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      },  10,     2.5,    0.15,   2.0,    0.40,   5.0,    10,      Data.WeaponType.Shotgun,   true);
 
         public static SortedDictionary<string, Weapon> weaponList = new SortedDictionary<string, Weapon>
         {
@@ -28,7 +32,9 @@ namespace Portable_Simulacrum
             {"布莱顿"         , Braton           },
             {"德拉 破坏者"     , DeraVandal       },
             {"月神Prime"      , SomaPrime        },
-            {"伊格尼斯"       , Ignis            },
+            {"伊格尼斯"       , Ignis             },
+            {"海克"           , Hek               },
+            {"斯特朗 亡魂"    , StrunWraith       },
         };
     }
 }

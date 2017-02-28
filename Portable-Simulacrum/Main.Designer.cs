@@ -52,6 +52,7 @@
             // 
             // btnCalc
             // 
+            this.btnCalc.Enabled = false;
             this.btnCalc.Location = new System.Drawing.Point(464, 419);
             this.btnCalc.Name = "btnCalc";
             this.btnCalc.Size = new System.Drawing.Size(75, 23);
@@ -123,6 +124,7 @@
             this.cbbWeapon.Name = "cbbWeapon";
             this.cbbWeapon.Size = new System.Drawing.Size(157, 23);
             this.cbbWeapon.TabIndex = 24;
+            this.cbbWeapon.SelectionChangeCommitted += new System.EventHandler(this.cbbWeapon_SelectionChangeCommitted);
             // 
             // dgvMod
             // 
@@ -163,14 +165,17 @@
             // 
             // cbbModList
             // 
+            this.cbbModList.Enabled = false;
             this.cbbModList.FormattingEnabled = true;
             this.cbbModList.Location = new System.Drawing.Point(33, 496);
             this.cbbModList.Name = "cbbModList";
             this.cbbModList.Size = new System.Drawing.Size(121, 23);
             this.cbbModList.TabIndex = 28;
+            this.cbbModList.SelectionChangeCommitted += new System.EventHandler(this.cbbModList_SelectionChangeCommitted);
             // 
             // btnAddMod
             // 
+            this.btnAddMod.Enabled = false;
             this.btnAddMod.Location = new System.Drawing.Point(236, 495);
             this.btnAddMod.Name = "btnAddMod";
             this.btnAddMod.Size = new System.Drawing.Size(75, 26);
@@ -181,6 +186,7 @@
             // 
             // nudModLevel
             // 
+            this.nudModLevel.Enabled = false;
             this.nudModLevel.Location = new System.Drawing.Point(160, 496);
             this.nudModLevel.Maximum = new decimal(new int[] {
             10,

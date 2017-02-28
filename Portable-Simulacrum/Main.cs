@@ -6,6 +6,8 @@ namespace Portable_Simulacrum
 {
     public partial class Main : Form
     {
+        private Data.WeaponType lastType = Data.WeaponType.Rifle;
+
         public Main()
         {
             InitializeComponent();
@@ -13,6 +15,7 @@ namespace Portable_Simulacrum
             cbbWeapon.DataSource = new BindingSource(WeaponList.weaponList, null);
             cbbWeapon.DisplayMember = "Key";
             cbbWeapon.ValueMember = "Value";
+            cbbWeapon.SelectedIndex = -1;
 
             cbbEnemyType.DataSource = new BindingSource(EnemyList.enemyList, null);
             cbbEnemyType.DisplayMember = "Key";
@@ -21,6 +24,7 @@ namespace Portable_Simulacrum
             cbbModList.DataSource = new BindingSource(ModList.rifleModList, null);
             cbbModList.DisplayMember = "Key";
             cbbModList.ValueMember = "Value";
+            cbbModList.SelectedIndex = -1;
         }
 
         public void ShowStats()
@@ -61,6 +65,7 @@ namespace Portable_Simulacrum
 
         private void btnCalc_Click(object sender, EventArgs e)
         {
+            if (cbbWeapon.SelectedIndex == -1) return;
             Data.Simdata result = new Data.Simdata(0, 0), temp = new Data.Simdata();
             bool timeExceed = false;
             string resultText = "";
@@ -94,6 +99,7 @@ namespace Portable_Simulacrum
 
         private void btnAddMod_Click(object sender, EventArgs e)
         {
+            if (cbbModList.SelectedIndex == -1) return;
             if (cbbModList.Text == "裂罅MOD")
             {
                 AddRiven newRiven = new AddRiven();
@@ -104,6 +110,7 @@ namespace Portable_Simulacrum
                     dgvMod.Rows[index].Cells[1].Value = 0;
                     dgvMod.Rows[index].Cells[2].Value = newRiven.rivenMod;
                     ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)cbbModList.Text, (Mod)cbbModList.SelectedValue));
+                    nudModLevel.Value = nudModLevel.Maximum = ((Mod)cbbModList.SelectedValue).maxLevel;
                     ShowStats();
                 }
             }
@@ -114,6 +121,7 @@ namespace Portable_Simulacrum
                 dgvMod.Rows[index].Cells[1].Value = (int)nudModLevel.Value;
                 dgvMod.Rows[index].Cells[2].Value = cbbModList.SelectedValue;
                 ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)dgvMod.Rows[index].Cells[0].Value, (Mod)dgvMod.Rows[index].Cells[2].Value));
+                if (cbbModList.SelectedValue != null) nudModLevel.Value = nudModLevel.Maximum = ((Mod)cbbModList.SelectedValue).maxLevel;
                 ShowStats();
             }
         }
@@ -132,6 +140,41 @@ namespace Portable_Simulacrum
         private void dgvMod_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             ShowStats();
+        }
+
+        private void cbbWeapon_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cbbModList.Enabled = true;
+            btnCalc.Enabled = true;
+            Data.WeaponType currType = ((Weapon)cbbWeapon.SelectedValue).type;
+            if (lastType == currType || (lastType == Data.WeaponType.Rifle && currType == Data.WeaponType.Bow) || (lastType == Data.WeaponType.Bow && currType == Data.WeaponType.Rifle))
+            {
+                ShowStats();
+                return;
+            }
+            switch (currType)
+            {
+                case Data.WeaponType.Rifle:
+                case Data.WeaponType.Bow:
+                    cbbModList.DataSource = new BindingSource(ModList.rifleModList, null);
+                    break;
+                case Data.WeaponType.Shotgun:
+                    cbbModList.DataSource = new BindingSource(ModList.shotgunModList, null);
+                    break;
+            }
+            cbbModList.DisplayMember = "Key";
+            cbbModList.ValueMember = "Value";
+            cbbModList.SelectedIndex = -1;
+            dgvMod.Rows.Clear();
+            lastType = currType;
+            ShowStats();
+        }
+
+        private void cbbModList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            nudModLevel.Enabled = true;
+            if (cbbModList.SelectedValue != null) nudModLevel.Value = nudModLevel.Maximum = ((Mod)cbbModList.SelectedValue).maxLevel;
+            btnAddMod.Enabled = true;
         }
     }
 }

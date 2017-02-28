@@ -7,11 +7,12 @@ namespace Portable_Simulacrum
     {
         public double[] multiplier { get; private set; }
         public Queue<Data.DamageType> elemQueue { get; private set; } = new Queue<Data.DamageType>();
+        public int maxLevel { get; private set; } = 0;
         public Mod()
         {
             multiplier = new double[(int)Data.ModProp.Cap];
         }
-        public Mod(double[] _multiplier)
+        public Mod(double[] _multiplier, int _maxLevel = 0)
         {
             multiplier = _multiplier;
             for (int i = (int)Data.ModProp.Cold; i <= (int)Data.ModProp.Toxin; i++)
@@ -21,11 +22,13 @@ namespace Portable_Simulacrum
                     elemQueue.Enqueue((Data.DamageType)(i - Data.elemDiff));
                 }
             }
+            maxLevel = _maxLevel;
         }
-        public Mod(double[] _multiplier, Queue<Data.DamageType> _elemQueue)
+        public Mod(double[] _multiplier, Queue<Data.DamageType> _elemQueue, int _maxLevel = 0)
         {
             multiplier = _multiplier;
             elemQueue = _elemQueue;
+            maxLevel = _maxLevel;
         }
 
         public Mod Scale(int level)
@@ -60,7 +63,7 @@ namespace Portable_Simulacrum
 
         public Mod Clone()
         {
-            return new Mod((double[])multiplier.Clone(), new Queue<Data.DamageType>(elemQueue));
+            return new Mod((double[])multiplier.Clone(), new Queue<Data.DamageType>(elemQueue), maxLevel);
         }
     }
 }
