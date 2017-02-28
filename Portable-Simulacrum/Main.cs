@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Portable_Simulacrum
@@ -24,9 +18,9 @@ namespace Portable_Simulacrum
             cbbEnemyType.DisplayMember = "Key";
             cbbEnemyType.ValueMember = "Value";
 
-            dgvcModType.DataSource = new BindingSource(ModList.rifleModList, null);
-            dgvcModType.DisplayMember = "Key";
-            dgvcModType.ValueMember = "Value";
+            cbbModList.DataSource = new BindingSource(ModList.rifleModList, null);
+            cbbModList.DisplayMember = "Key";
+            cbbModList.ValueMember = "Value";
         }
 
         private void btnCalc_Click(object sender, EventArgs e)
@@ -37,7 +31,7 @@ namespace Portable_Simulacrum
             foreach (DataGridViewRow row in dgvMod.Rows)
             {
                 if (row.Cells[0].Value == null || row.Cells[1].Value == null) break;
-                mod.Combine(((Mod)row.Cells[0].Value).Scale(Convert.ToInt32(row.Cells[1].Value.ToString())));
+                mod.Combine(((Mod)row.Cells[2].Value).Scale(Convert.ToInt32(row.Cells[1].Value.ToString())));
             }
 
             for (int i = 0; i < Data.cycles; i++)
@@ -55,6 +49,22 @@ namespace Portable_Simulacrum
             result.shots /= Data.cycles;
             lblResultTime.Text = timeExceed ? "180秒以上" : result.time.ToString("N2");
             lblResultShots.Text = timeExceed ? "耗时过长" : result.shots.ToString("N2");
+        }
+
+        private void btnAddMod_Click(object sender, EventArgs e)
+        {
+            int index = dgvMod.Rows.Add();
+            dgvMod.Rows[index].Cells[0].Value = cbbModList.Text;
+            dgvMod.Rows[index].Cells[1].Value = (int)nudModLevel.Value;
+            dgvMod.Rows[index].Cells[2].Value = cbbModList.SelectedValue;
+            
+            ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)dgvMod.Rows[index].Cells[0].Value, (Mod)dgvMod.Rows[index].Cells[2].Value));
+        }
+
+        private void dgvMod_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+
+            ((BindingSource)cbbModList.DataSource).Add(new KeyValuePair<string, Mod>((string)e.Row.Cells[0].Value, (Mod)e.Row.Cells[2].Value));
         }
     }
 }

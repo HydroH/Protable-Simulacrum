@@ -40,10 +40,15 @@
             this.lblWeapon = new System.Windows.Forms.Label();
             this.cbbWeapon = new System.Windows.Forms.ComboBox();
             this.dgvMod = new System.Windows.Forms.DataGridView();
-            this.dgvcModType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dgvcModName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcModLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModInstance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbbModList = new System.Windows.Forms.ComboBox();
+            this.btnAddMod = new System.Windows.Forms.Button();
+            this.nudModLevel = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudModLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCalc
@@ -150,31 +155,77 @@
             // 
             // dgvMod
             // 
+            this.dgvMod.AllowUserToAddRows = false;
             this.dgvMod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcModType,
-            this.dgvcModLevel});
+            this.dgvcModName,
+            this.dgvcModLevel,
+            this.ModInstance});
             this.dgvMod.Location = new System.Drawing.Point(33, 68);
             this.dgvMod.Name = "dgvMod";
             this.dgvMod.RowTemplate.Height = 27;
             this.dgvMod.Size = new System.Drawing.Size(278, 297);
             this.dgvMod.TabIndex = 26;
+            this.dgvMod.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvMod_UserDeletingRow);
             // 
-            // dgvcModType
+            // dgvcModName
             // 
-            this.dgvcModType.HeaderText = "MOD名称";
-            this.dgvcModType.Name = "dgvcModType";
+            this.dgvcModName.HeaderText = "MOD名称";
+            this.dgvcModName.Name = "dgvcModName";
+            this.dgvcModName.ReadOnly = true;
+            this.dgvcModName.Width = 80;
             // 
             // dgvcModLevel
             // 
             this.dgvcModLevel.HeaderText = "MOD等级";
             this.dgvcModLevel.Name = "dgvcModLevel";
+            this.dgvcModLevel.Width = 80;
+            // 
+            // ModInstance
+            // 
+            this.ModInstance.HeaderText = "MOD实体";
+            this.ModInstance.Name = "ModInstance";
+            this.ModInstance.ReadOnly = true;
+            this.ModInstance.Visible = false;
+            // 
+            // cbbModList
+            // 
+            this.cbbModList.FormattingEnabled = true;
+            this.cbbModList.Location = new System.Drawing.Point(33, 401);
+            this.cbbModList.Name = "cbbModList";
+            this.cbbModList.Size = new System.Drawing.Size(121, 23);
+            this.cbbModList.TabIndex = 28;
+            // 
+            // btnAddMod
+            // 
+            this.btnAddMod.Location = new System.Drawing.Point(236, 400);
+            this.btnAddMod.Name = "btnAddMod";
+            this.btnAddMod.Size = new System.Drawing.Size(75, 26);
+            this.btnAddMod.TabIndex = 27;
+            this.btnAddMod.Text = "添加MOD";
+            this.btnAddMod.UseVisualStyleBackColor = true;
+            this.btnAddMod.Click += new System.EventHandler(this.btnAddMod_Click);
+            // 
+            // nudModLevel
+            // 
+            this.nudModLevel.Location = new System.Drawing.Point(160, 401);
+            this.nudModLevel.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudModLevel.Name = "nudModLevel";
+            this.nudModLevel.Size = new System.Drawing.Size(70, 25);
+            this.nudModLevel.TabIndex = 29;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 488);
+            this.Controls.Add(this.nudModLevel);
+            this.Controls.Add(this.cbbModList);
+            this.Controls.Add(this.btnAddMod);
             this.Controls.Add(this.dgvMod);
             this.Controls.Add(this.lblWeapon);
             this.Controls.Add(this.cbbWeapon);
@@ -191,6 +242,7 @@
             this.Text = "伪·幻影装置";
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudModLevel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,8 +261,12 @@
         private System.Windows.Forms.Label lblWeapon;
         private System.Windows.Forms.ComboBox cbbWeapon;
         private System.Windows.Forms.DataGridView dgvMod;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dgvcModType;
+        private System.Windows.Forms.ComboBox cbbModList;
+        private System.Windows.Forms.Button btnAddMod;
+        private System.Windows.Forms.NumericUpDown nudModLevel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcModName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcModLevel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ModInstance;
     }
 }
 
