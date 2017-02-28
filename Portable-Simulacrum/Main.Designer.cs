@@ -30,10 +30,7 @@
         {
             this.btnCalc = new System.Windows.Forms.Button();
             this.cbbEnemyType = new System.Windows.Forms.ComboBox();
-            this.lblResultTime = new System.Windows.Forms.Label();
-            this.lblResultShots = new System.Windows.Forms.Label();
-            this.lblLabelShots = new System.Windows.Forms.Label();
-            this.lblLabelTime = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
             this.lblEnemyType = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.nudEnemyLevel = new System.Windows.Forms.NumericUpDown();
@@ -71,41 +68,13 @@
             this.cbbEnemyType.Size = new System.Drawing.Size(121, 23);
             this.cbbEnemyType.TabIndex = 11;
             // 
-            // lblResultTime
+            // lblResult
             // 
-            this.lblResultTime.AutoSize = true;
-            this.lblResultTime.Location = new System.Drawing.Point(508, 475);
-            this.lblResultTime.Name = "lblResultTime";
-            this.lblResultTime.Size = new System.Drawing.Size(31, 15);
-            this.lblResultTime.TabIndex = 13;
-            this.lblResultTime.Text = "N/A";
-            // 
-            // lblResultShots
-            // 
-            this.lblResultShots.AutoSize = true;
-            this.lblResultShots.Location = new System.Drawing.Point(508, 506);
-            this.lblResultShots.Name = "lblResultShots";
-            this.lblResultShots.Size = new System.Drawing.Size(31, 15);
-            this.lblResultShots.TabIndex = 14;
-            this.lblResultShots.Text = "N/A";
-            // 
-            // lblLabelShots
-            // 
-            this.lblLabelShots.AutoSize = true;
-            this.lblLabelShots.Location = new System.Drawing.Point(435, 506);
-            this.lblLabelShots.Name = "lblLabelShots";
-            this.lblLabelShots.Size = new System.Drawing.Size(67, 15);
-            this.lblLabelShots.TabIndex = 20;
-            this.lblLabelShots.Text = "子弹数：";
-            // 
-            // lblLabelTime
-            // 
-            this.lblLabelTime.AutoSize = true;
-            this.lblLabelTime.Location = new System.Drawing.Point(449, 475);
-            this.lblLabelTime.Name = "lblLabelTime";
-            this.lblLabelTime.Size = new System.Drawing.Size(52, 15);
-            this.lblLabelTime.TabIndex = 19;
-            this.lblLabelTime.Text = "耗时：";
+            this.lblResult.AutoSize = true;
+            this.lblResult.Location = new System.Drawing.Point(350, 463);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(0, 15);
+            this.lblResult.TabIndex = 19;
             // 
             // lblEnemyType
             // 
@@ -256,10 +225,7 @@
             this.Controls.Add(this.nudEnemyLevel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblEnemyType);
-            this.Controls.Add(this.lblLabelShots);
-            this.Controls.Add(this.lblLabelTime);
-            this.Controls.Add(this.lblResultShots);
-            this.Controls.Add(this.lblResultTime);
+            this.Controls.Add(this.lblResult);
             this.Controls.Add(this.cbbEnemyType);
             this.Controls.Add(this.btnCalc);
             this.Name = "Main";
@@ -275,10 +241,7 @@
         #endregion
         private System.Windows.Forms.Button btnCalc;
         private System.Windows.Forms.ComboBox cbbEnemyType;
-        private System.Windows.Forms.Label lblResultTime;
-        private System.Windows.Forms.Label lblResultShots;
-        private System.Windows.Forms.Label lblLabelShots;
-        private System.Windows.Forms.Label lblLabelTime;
+        private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblEnemyType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudEnemyLevel;

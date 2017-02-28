@@ -49,7 +49,13 @@ namespace Portable_Simulacrum
             statText += "弹片触发几率 " + (100 * modWeapon.pelletStatChan).ToString("N2") + "%\n";
             statText += "射速 " + modWeapon.fireRate.ToString("N2") + "\n";
             statText += "换弹时间 " + modWeapon.reload.ToString("N2") + "\n";
-            statText += "弹匣 " + modWeapon.clip.ToString("N2") + "\n";
+            statText += "弹匣 " + modWeapon.clip.ToString("N2") + "\n\n";
+
+            int critInt = (int)modWeapon.critChan;
+            double critDec = modWeapon.critChan - (double)critInt;
+            double theoryDPS = modWeapon.damage.totalDmg * modWeapon.multiShot * ((critDec * (1 + critInt) + (1 - critDec) * critInt) * (modWeapon.critMult - 1) + 1) * modWeapon.fireRate;
+            statText += "理论爆发DPS " + theoryDPS.ToString("N2") + "\n";
+            statText += "理论持续DPS " + (theoryDPS * ((modWeapon.clip / modWeapon.fireRate) / (modWeapon.clip / modWeapon.fireRate + modWeapon.reload))).ToString("N2");
             lblStats.Text = statText;
         }
 
@@ -57,6 +63,9 @@ namespace Portable_Simulacrum
         {
             Data.Simdata result = new Data.Simdata(0, 0), temp = new Data.Simdata();
             bool timeExceed = false;
+            string resultText = "";
+            Enemy enemy = ((Enemy)cbbEnemyType.SelectedValue).Scale((int)nudEnemyLevel.Value);
+            double fullHitpoint = enemy.health + enemy.shield;
             Mod mod = new Mod();
             foreach (DataGridViewRow row in dgvMod.Rows)
             {
@@ -66,7 +75,7 @@ namespace Portable_Simulacrum
 
             for (int i = 0; i < Data.cycles; i++)
             {
-                temp = ((Weapon)cbbWeapon.SelectedValue).SimKill(((Enemy)cbbEnemyType.SelectedValue).Scale((int)nudEnemyLevel.Value), mod.Clone(), cbHeadshot.Checked);
+                temp = ((Weapon)cbbWeapon.SelectedValue).SimKill(enemy.Clone(), mod.Clone(), cbHeadshot.Checked);
                 if (temp.time >= Data.timeLimit)
                 {
                     timeExceed = true;
@@ -77,8 +86,10 @@ namespace Portable_Simulacrum
             }
             result.time /= Data.cycles;
             result.shots /= Data.cycles;
-            lblResultTime.Text = timeExceed ? "180秒以上" : result.time.ToString("N2");
-            lblResultShots.Text = timeExceed ? "耗时过长" : result.shots.ToString("N2");
+            resultText += "耗时 " + (timeExceed ? "180秒以上" : (result.time.ToString("N2") + "s")) + "\n";
+            resultText += "耗弹 " + (timeExceed ? "耗时过长" : result.shots.ToString("N2")) + "\n";
+            resultText += "实际DPS " + (timeExceed ? "N/A" : (fullHitpoint / result.time).ToString("N2")) + "\n";
+            lblResult.Text = resultText;
         }
 
         private void btnAddMod_Click(object sender, EventArgs e)
