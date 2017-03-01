@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Portable_Simulacrum
@@ -7,6 +8,7 @@ namespace Portable_Simulacrum
     public partial class Main : Form
     {
         private Data.WeaponType lastType = Data.WeaponType.Rifle;
+        private Button lastDrag;
 
         public Main()
         {
@@ -25,16 +27,16 @@ namespace Portable_Simulacrum
             cbbModList.DisplayMember = "Key";
             cbbModList.ValueMember = "Value";
             cbbModList.SelectedIndex = -1;
+
+            for (char i = '1'; i <= '8'; i++)
+            {
+                Controls.Find("btnMod" + i, true).FirstOrDefault().Tag = new Data.ModData(new Mod(), "", "", 0);
+            }
         }
 
         public void ShowStats()
         {
-            Mod mod = new Mod();
-            foreach (DataGridViewRow row in dgvMod.Rows)
-            {
-                if (row.Cells[0].Value == null || row.Cells[1].Value == null) break;
-                mod.Combine(((Mod)row.Cells[2].Value).Scale(Convert.ToInt32(row.Cells[1].Value.ToString())));
-            }
+            Mod mod = SumMod();
             Weapon modWeapon = ((Weapon)cbbWeapon.SelectedValue).Modify(mod);
 
             string statText = "";
@@ -63,6 +65,41 @@ namespace Portable_Simulacrum
             lblStats.Text = statText;
         }
 
+        private bool AddMod(Mod mod, string name, string desc, int level)
+        {
+            Data.ModData modData;
+            Button btn;
+            for (char i = '1'; i <= '8'; i++)
+            {
+                btn = (Button)Controls.Find("btnMod" + i, true).FirstOrDefault();
+                modData = (Data.ModData)btn.Tag;
+                if (modData.name == "")
+                {
+                    btn.Tag = new Data.ModData(mod, name, desc, level);
+                    btn.Text = name;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private Mod SumMod()
+        {
+            Mod mod = new Mod();
+            Button btn;
+            Data.ModData modData;
+            for (char i = '1'; i <= '8'; i++)
+            {
+                btn = (Button)Controls.Find("btnMod" + i, true).FirstOrDefault();
+                modData = (Data.ModData)btn.Tag;
+                if (modData.name != "")
+                {
+                    mod.Combine(modData.mod.Scale(modData.level));
+                }
+            }
+            return mod;
+        }
+
         private void btnCalc_Click(object sender, EventArgs e)
         {
             if (cbbWeapon.SelectedIndex == -1) return;
@@ -71,12 +108,7 @@ namespace Portable_Simulacrum
             string resultText = "";
             Enemy enemy = ((Enemy)cbbEnemyType.SelectedValue).Scale((int)nudEnemyLevel.Value);
             double fullHitpoint = enemy.health + enemy.shield;
-            Mod mod = new Mod();
-            foreach (DataGridViewRow row in dgvMod.Rows)
-            {
-                if (row.Cells[0].Value == null || row.Cells[1].Value == null) break;
-                mod.Combine(((Mod)row.Cells[2].Value).Scale(Convert.ToInt32(row.Cells[1].Value.ToString())));
-            }
+            Mod mod = SumMod();
 
             for (int i = 0; i < Data.cycles; i++)
             {
@@ -103,43 +135,17 @@ namespace Portable_Simulacrum
             if (cbbModList.Text == "裂罅MOD")
             {
                 AddRiven newRiven = new AddRiven();
-                if (newRiven.ShowDialog() == DialogResult.OK)
-                {
-                    int index = dgvMod.Rows.Add();
-                    dgvMod.Rows[index].Cells[0].Value = "裂罅MOD";
-                    dgvMod.Rows[index].Cells[1].Value = 0;
-                    dgvMod.Rows[index].Cells[2].Value = newRiven.rivenMod;
-                    ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)cbbModList.Text, (Mod)cbbModList.SelectedValue));
-                    nudModLevel.Value = nudModLevel.Maximum = ((Mod)cbbModList.SelectedValue).maxLevel;
-                    ShowStats();
-                }
+                if (newRiven.ShowDialog() != DialogResult.OK || !AddMod(newRiven.rivenMod, "裂罅MOD", "裂罅MOD", 0)) return;
             }
             else
             {
-                int index = dgvMod.Rows.Add();
-                dgvMod.Rows[index].Cells[0].Value = cbbModList.Text;
-                dgvMod.Rows[index].Cells[1].Value = (int)nudModLevel.Value;
-                dgvMod.Rows[index].Cells[2].Value = cbbModList.SelectedValue;
-                ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>((string)dgvMod.Rows[index].Cells[0].Value, (Mod)dgvMod.Rows[index].Cells[2].Value));
-                if (cbbModList.SelectedValue != null) nudModLevel.Value = nudModLevel.Maximum = ((Mod)cbbModList.SelectedValue).maxLevel;
-                ShowStats();
+                if (!AddMod((Mod)cbbModList.SelectedValue, cbbModList.Text, cbbModList.Text, (int)nudModLevel.Value)) return;
             }
-        }
 
-        private void dgvMod_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-
-            ((BindingSource)cbbModList.DataSource).Add(new KeyValuePair<string, Mod>((string)e.Row.Cells[0].Value, (Mod)e.Row.Cells[2].Value));
-        }
-
-        private void dgvMod_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
+            ((BindingSource)cbbModList.DataSource).Remove(new KeyValuePair<string, Mod>(cbbModList.Text, (Mod)cbbModList.SelectedValue));
+            if (cbbModList.SelectedValue != null) nudModLevel.Value = nudModLevel.Maximum = ((Mod)cbbModList.SelectedValue).maxLevel;
             ShowStats();
-        }
 
-        private void dgvMod_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            ShowStats();
         }
 
         private void cbbWeapon_SelectionChangeCommitted(object sender, EventArgs e)
@@ -165,7 +171,10 @@ namespace Portable_Simulacrum
             cbbModList.DisplayMember = "Key";
             cbbModList.ValueMember = "Value";
             cbbModList.SelectedIndex = -1;
-            dgvMod.Rows.Clear();
+            for (char i = '1'; i <= '8'; i++)
+            {
+                Controls.Find("btnMod" + i, true).FirstOrDefault().Tag = new Data.ModData(new Mod(), "", "", 0);
+            }
             lastType = currType;
             ShowStats();
         }
@@ -176,5 +185,82 @@ namespace Portable_Simulacrum
             if (cbbModList.SelectedValue != null) nudModLevel.Value = nudModLevel.Maximum = ((Mod)cbbModList.SelectedValue).maxLevel;
             btnAddMod.Enabled = true;
         }
+
+        private void btn_MouseDown(Button btn, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) return;
+            lastDrag = btn;
+            btn.DoDragDrop(btn.Tag, DragDropEffects.Copy | DragDropEffects.Move);
+        }
+        private void btn_DragEnter(DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Data.ModData)))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+        private void btn_DragDrop(Button btn, DragEventArgs e)
+        {
+            Data.ModData modData = ((Data.ModData)e.Data.GetData(typeof(Data.ModData))).Clone();
+            lastDrag.Tag = btn.Tag;
+            lastDrag.Text = btn.Text;
+            btn.Tag = modData;
+            btn.Text = modData.description;
+            ShowStats();
+        }
+
+        private void btnMod1_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod1, e); }
+        private void btnMod1_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod1_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod1, e); }
+
+        private void btnMod2_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod2, e); }
+        private void btnMod2_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod2_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod2, e); }
+
+        private void btnMod3_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod3, e); }
+        private void btnMod3_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod3_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod3, e); }
+
+        private void btnMod4_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod4, e); }
+        private void btnMod4_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod4_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod4, e); }
+
+        private void btnMod5_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod5, e); }
+        private void btnMod5_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod5_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod5, e); }
+
+        private void btnMod6_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod6, e); }
+        private void btnMod6_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod6_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod6, e); }
+
+        private void btnMod7_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod7, e); }
+        private void btnMod7_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod7_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod7, e); }
+
+        private void btnMod8_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod8, e); }
+        private void btnMod8_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
+        private void btnMod8_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod8, e); }
+
+        private void btnMod_Click(Button btn, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
+            if (!btn.ClientRectangle.Contains(e.Location)) return;
+            Data.ModData modData = (Data.ModData)btn.Tag;
+            if (modData.name == "") return;
+            ((BindingSource)cbbModList.DataSource).Add(new KeyValuePair<string, Mod>(modData.name, modData.mod));
+            btn.Tag = new Data.ModData(new Mod(), "", "", 0);
+            btn.Text = "";
+            ShowStats();
+        }
+
+        private void btnMod1_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod1, e); }
+        private void btnMod2_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod2, e); }
+        private void btnMod3_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod3, e); }
+        private void btnMod4_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod4, e); }
+        private void btnMod5_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod5, e); }
+        private void btnMod6_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod6, e); }
+        private void btnMod7_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod7, e); }
+        private void btnMod8_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod8, e); }
+
     }
 }

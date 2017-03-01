@@ -36,24 +36,27 @@
             this.nudEnemyLevel = new System.Windows.Forms.NumericUpDown();
             this.lblWeapon = new System.Windows.Forms.Label();
             this.cbbWeapon = new System.Windows.Forms.ComboBox();
-            this.dgvMod = new System.Windows.Forms.DataGridView();
-            this.dgvcModName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcModLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModInstance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbbModList = new System.Windows.Forms.ComboBox();
             this.btnAddMod = new System.Windows.Forms.Button();
             this.nudModLevel = new System.Windows.Forms.NumericUpDown();
             this.cbHeadshot = new System.Windows.Forms.CheckBox();
             this.lblStats = new System.Windows.Forms.Label();
+            this.btnMod1 = new System.Windows.Forms.Button();
+            this.btnMod2 = new System.Windows.Forms.Button();
+            this.btnMod3 = new System.Windows.Forms.Button();
+            this.btnMod4 = new System.Windows.Forms.Button();
+            this.btnMod5 = new System.Windows.Forms.Button();
+            this.btnMod6 = new System.Windows.Forms.Button();
+            this.btnMod7 = new System.Windows.Forms.Button();
+            this.btnMod8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudModLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCalc
             // 
             this.btnCalc.Enabled = false;
-            this.btnCalc.Location = new System.Drawing.Point(464, 419);
+            this.btnCalc.Location = new System.Drawing.Point(547, 375);
             this.btnCalc.Name = "btnCalc";
             this.btnCalc.Size = new System.Drawing.Size(75, 23);
             this.btnCalc.TabIndex = 10;
@@ -64,7 +67,7 @@
             // cbbEnemyType
             // 
             this.cbbEnemyType.FormattingEnabled = true;
-            this.cbbEnemyType.Location = new System.Drawing.Point(418, 337);
+            this.cbbEnemyType.Location = new System.Drawing.Point(501, 293);
             this.cbbEnemyType.Name = "cbbEnemyType";
             this.cbbEnemyType.Size = new System.Drawing.Size(121, 23);
             this.cbbEnemyType.TabIndex = 11;
@@ -72,7 +75,7 @@
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(350, 463);
+            this.lblResult.Location = new System.Drawing.Point(433, 419);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(0, 15);
             this.lblResult.TabIndex = 19;
@@ -80,7 +83,7 @@
             // lblEnemyType
             // 
             this.lblEnemyType.AutoSize = true;
-            this.lblEnemyType.Location = new System.Drawing.Point(345, 338);
+            this.lblEnemyType.Location = new System.Drawing.Point(428, 294);
             this.lblEnemyType.Name = "lblEnemyType";
             this.lblEnemyType.Size = new System.Drawing.Size(67, 15);
             this.lblEnemyType.TabIndex = 21;
@@ -89,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(345, 381);
+            this.label1.Location = new System.Drawing.Point(428, 337);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 22;
@@ -97,7 +100,7 @@
             // 
             // nudEnemyLevel
             // 
-            this.nudEnemyLevel.Location = new System.Drawing.Point(419, 376);
+            this.nudEnemyLevel.Location = new System.Drawing.Point(502, 332);
             this.nudEnemyLevel.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -110,7 +113,7 @@
             // lblWeapon
             // 
             this.lblWeapon.AutoSize = true;
-            this.lblWeapon.Location = new System.Drawing.Point(30, 24);
+            this.lblWeapon.Location = new System.Drawing.Point(44, 24);
             this.lblWeapon.Name = "lblWeapon";
             this.lblWeapon.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblWeapon.Size = new System.Drawing.Size(37, 15);
@@ -120,54 +123,17 @@
             // cbbWeapon
             // 
             this.cbbWeapon.FormattingEnabled = true;
-            this.cbbWeapon.Location = new System.Drawing.Point(73, 19);
+            this.cbbWeapon.Location = new System.Drawing.Point(87, 19);
             this.cbbWeapon.Name = "cbbWeapon";
             this.cbbWeapon.Size = new System.Drawing.Size(157, 23);
             this.cbbWeapon.TabIndex = 24;
             this.cbbWeapon.SelectionChangeCommitted += new System.EventHandler(this.cbbWeapon_SelectionChangeCommitted);
             // 
-            // dgvMod
-            // 
-            this.dgvMod.AllowUserToAddRows = false;
-            this.dgvMod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcModName,
-            this.dgvcModLevel,
-            this.ModInstance});
-            this.dgvMod.Location = new System.Drawing.Point(33, 68);
-            this.dgvMod.Name = "dgvMod";
-            this.dgvMod.RowTemplate.Height = 27;
-            this.dgvMod.Size = new System.Drawing.Size(278, 387);
-            this.dgvMod.TabIndex = 26;
-            this.dgvMod.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMod_CellEndEdit);
-            this.dgvMod.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvMod_UserDeletedRow);
-            this.dgvMod.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvMod_UserDeletingRow);
-            // 
-            // dgvcModName
-            // 
-            this.dgvcModName.HeaderText = "MOD名称";
-            this.dgvcModName.Name = "dgvcModName";
-            this.dgvcModName.ReadOnly = true;
-            this.dgvcModName.Width = 80;
-            // 
-            // dgvcModLevel
-            // 
-            this.dgvcModLevel.HeaderText = "MOD等级";
-            this.dgvcModLevel.Name = "dgvcModLevel";
-            this.dgvcModLevel.Width = 80;
-            // 
-            // ModInstance
-            // 
-            this.ModInstance.HeaderText = "MOD实体";
-            this.ModInstance.Name = "ModInstance";
-            this.ModInstance.ReadOnly = true;
-            this.ModInstance.Visible = false;
-            // 
             // cbbModList
             // 
             this.cbbModList.Enabled = false;
             this.cbbModList.FormattingEnabled = true;
-            this.cbbModList.Location = new System.Drawing.Point(33, 496);
+            this.cbbModList.Location = new System.Drawing.Point(389, 17);
             this.cbbModList.Name = "cbbModList";
             this.cbbModList.Size = new System.Drawing.Size(121, 23);
             this.cbbModList.TabIndex = 28;
@@ -176,7 +142,7 @@
             // btnAddMod
             // 
             this.btnAddMod.Enabled = false;
-            this.btnAddMod.Location = new System.Drawing.Point(236, 495);
+            this.btnAddMod.Location = new System.Drawing.Point(592, 16);
             this.btnAddMod.Name = "btnAddMod";
             this.btnAddMod.Size = new System.Drawing.Size(75, 26);
             this.btnAddMod.TabIndex = 27;
@@ -187,7 +153,7 @@
             // nudModLevel
             // 
             this.nudModLevel.Enabled = false;
-            this.nudModLevel.Location = new System.Drawing.Point(160, 496);
+            this.nudModLevel.Location = new System.Drawing.Point(516, 17);
             this.nudModLevel.Maximum = new decimal(new int[] {
             10,
             0,
@@ -200,7 +166,7 @@
             // cbHeadshot
             // 
             this.cbHeadshot.AutoSize = true;
-            this.cbHeadshot.Location = new System.Drawing.Point(353, 423);
+            this.cbHeadshot.Location = new System.Drawing.Point(436, 379);
             this.cbHeadshot.Name = "cbHeadshot";
             this.cbHeadshot.Size = new System.Drawing.Size(59, 19);
             this.cbHeadshot.TabIndex = 30;
@@ -210,22 +176,133 @@
             // lblStats
             // 
             this.lblStats.AutoSize = true;
-            this.lblStats.Location = new System.Drawing.Point(345, 22);
+            this.lblStats.Location = new System.Drawing.Point(60, 291);
             this.lblStats.Name = "lblStats";
             this.lblStats.Size = new System.Drawing.Size(0, 15);
             this.lblStats.TabIndex = 31;
+            // 
+            // btnMod1
+            // 
+            this.btnMod1.AllowDrop = true;
+            this.btnMod1.Location = new System.Drawing.Point(48, 65);
+            this.btnMod1.Name = "btnMod1";
+            this.btnMod1.Size = new System.Drawing.Size(150, 100);
+            this.btnMod1.TabIndex = 32;
+            this.btnMod1.UseVisualStyleBackColor = true;
+            this.btnMod1.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod1_DragDrop);
+            this.btnMod1.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod1_DragEnter);
+            this.btnMod1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod1_MouseDown);
+            this.btnMod1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod1_MouseUp);
+            // 
+            // btnMod2
+            // 
+            this.btnMod2.AllowDrop = true;
+            this.btnMod2.Location = new System.Drawing.Point(204, 65);
+            this.btnMod2.Name = "btnMod2";
+            this.btnMod2.Size = new System.Drawing.Size(150, 100);
+            this.btnMod2.TabIndex = 33;
+            this.btnMod2.UseVisualStyleBackColor = true;
+            this.btnMod2.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod2_DragDrop);
+            this.btnMod2.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod2_DragEnter);
+            this.btnMod2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod2_MouseDown);
+            this.btnMod2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod2_MouseUp);
+            // 
+            // btnMod3
+            // 
+            this.btnMod3.AllowDrop = true;
+            this.btnMod3.Location = new System.Drawing.Point(360, 65);
+            this.btnMod3.Name = "btnMod3";
+            this.btnMod3.Size = new System.Drawing.Size(150, 100);
+            this.btnMod3.TabIndex = 34;
+            this.btnMod3.UseVisualStyleBackColor = true;
+            this.btnMod3.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod3_DragDrop);
+            this.btnMod3.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod3_DragEnter);
+            this.btnMod3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod3_MouseDown);
+            this.btnMod3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod3_MouseUp);
+            // 
+            // btnMod4
+            // 
+            this.btnMod4.AllowDrop = true;
+            this.btnMod4.Location = new System.Drawing.Point(516, 65);
+            this.btnMod4.Name = "btnMod4";
+            this.btnMod4.Size = new System.Drawing.Size(150, 100);
+            this.btnMod4.TabIndex = 35;
+            this.btnMod4.UseVisualStyleBackColor = true;
+            this.btnMod4.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod4_DragDrop);
+            this.btnMod4.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod4_DragEnter);
+            this.btnMod4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod4_MouseDown);
+            this.btnMod4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod4_MouseUp);
+            // 
+            // btnMod5
+            // 
+            this.btnMod5.AllowDrop = true;
+            this.btnMod5.Location = new System.Drawing.Point(48, 171);
+            this.btnMod5.Name = "btnMod5";
+            this.btnMod5.Size = new System.Drawing.Size(150, 100);
+            this.btnMod5.TabIndex = 36;
+            this.btnMod5.UseVisualStyleBackColor = true;
+            this.btnMod5.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod5_DragDrop);
+            this.btnMod5.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod5_DragEnter);
+            this.btnMod5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod5_MouseDown);
+            this.btnMod5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod5_MouseUp);
+            // 
+            // btnMod6
+            // 
+            this.btnMod6.AllowDrop = true;
+            this.btnMod6.Location = new System.Drawing.Point(204, 171);
+            this.btnMod6.Name = "btnMod6";
+            this.btnMod6.Size = new System.Drawing.Size(150, 100);
+            this.btnMod6.TabIndex = 37;
+            this.btnMod6.UseVisualStyleBackColor = true;
+            this.btnMod6.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod6_DragDrop);
+            this.btnMod6.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod6_DragEnter);
+            this.btnMod6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod6_MouseDown);
+            this.btnMod6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod6_MouseUp);
+            // 
+            // btnMod7
+            // 
+            this.btnMod7.AllowDrop = true;
+            this.btnMod7.Location = new System.Drawing.Point(360, 171);
+            this.btnMod7.Name = "btnMod7";
+            this.btnMod7.Size = new System.Drawing.Size(150, 100);
+            this.btnMod7.TabIndex = 38;
+            this.btnMod7.UseVisualStyleBackColor = true;
+            this.btnMod7.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod7_DragDrop);
+            this.btnMod7.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod7_DragEnter);
+            this.btnMod7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod7_MouseDown);
+            this.btnMod7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod7_MouseUp);
+            // 
+            // btnMod8
+            // 
+            this.btnMod8.AllowDrop = true;
+            this.btnMod8.Location = new System.Drawing.Point(516, 171);
+            this.btnMod8.Name = "btnMod8";
+            this.btnMod8.Size = new System.Drawing.Size(150, 100);
+            this.btnMod8.TabIndex = 39;
+            this.btnMod8.UseVisualStyleBackColor = true;
+            this.btnMod8.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod8_DragDrop);
+            this.btnMod8.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnMod8_DragEnter);
+            this.btnMod8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod8_MouseDown);
+            this.btnMod8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod8_MouseUp);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 556);
+            this.ClientSize = new System.Drawing.Size(739, 597);
+            this.Controls.Add(this.btnMod8);
+            this.Controls.Add(this.btnMod7);
+            this.Controls.Add(this.btnMod6);
+            this.Controls.Add(this.btnMod5);
+            this.Controls.Add(this.btnMod4);
+            this.Controls.Add(this.btnMod3);
+            this.Controls.Add(this.btnMod2);
+            this.Controls.Add(this.btnMod1);
             this.Controls.Add(this.lblStats);
             this.Controls.Add(this.cbHeadshot);
             this.Controls.Add(this.nudModLevel);
             this.Controls.Add(this.cbbModList);
             this.Controls.Add(this.btnAddMod);
-            this.Controls.Add(this.dgvMod);
             this.Controls.Add(this.lblWeapon);
             this.Controls.Add(this.cbbWeapon);
             this.Controls.Add(this.nudEnemyLevel);
@@ -237,7 +314,6 @@
             this.Name = "Main";
             this.Text = "伪·幻影装置";
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudModLevel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,15 +329,19 @@
         private System.Windows.Forms.NumericUpDown nudEnemyLevel;
         private System.Windows.Forms.Label lblWeapon;
         private System.Windows.Forms.ComboBox cbbWeapon;
-        private System.Windows.Forms.DataGridView dgvMod;
         private System.Windows.Forms.ComboBox cbbModList;
         private System.Windows.Forms.Button btnAddMod;
         private System.Windows.Forms.NumericUpDown nudModLevel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcModName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcModLevel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ModInstance;
         private System.Windows.Forms.CheckBox cbHeadshot;
         private System.Windows.Forms.Label lblStats;
+        private System.Windows.Forms.Button btnMod1;
+        private System.Windows.Forms.Button btnMod2;
+        private System.Windows.Forms.Button btnMod3;
+        private System.Windows.Forms.Button btnMod4;
+        private System.Windows.Forms.Button btnMod5;
+        private System.Windows.Forms.Button btnMod6;
+        private System.Windows.Forms.Button btnMod7;
+        private System.Windows.Forms.Button btnMod8;
     }
 }
 

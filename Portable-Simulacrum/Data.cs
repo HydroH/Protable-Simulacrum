@@ -137,5 +137,24 @@ namespace Portable_Simulacrum
                 shots = _shots;
             }
         }
+
+        public struct ModData
+        {
+            public Mod mod;
+            public string name, description;
+            public int level;
+            public ModData(Mod _mod,string _name, string _description,int _level)
+            {
+                mod = _mod.Clone();
+                name = _name;
+                description = _description;
+                level = _level;
+            }
+
+            public ModData Clone()
+            {
+                return new ModData(mod.Clone(), (string)name.Clone(), (string)description.Clone(), level);
+            }
+        }
     }
 }
