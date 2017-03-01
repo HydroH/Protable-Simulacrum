@@ -8,7 +8,8 @@ namespace Portable_Simulacrum
     public partial class Main : Form
     {
         private Data.WeaponType lastType = Data.WeaponType.Rifle;
-        private Button lastDrag;
+        private Button lastDragBtn;
+        private NumericLeftRight lastDragNlr;
 
         public Main()
         {
@@ -36,6 +37,7 @@ namespace Portable_Simulacrum
 
         public void ShowStats()
         {
+            if (cbbWeapon.SelectedValue == null) return;
             Mod mod = SumMod();
             Weapon modWeapon = ((Weapon)cbbWeapon.SelectedValue).Modify(mod);
 
@@ -69,6 +71,7 @@ namespace Portable_Simulacrum
         {
             Data.ModData modData;
             Button btn;
+            NumericLeftRight nlr;
             for (char i = '1'; i <= '8'; i++)
             {
                 btn = (Button)Controls.Find("btnMod" + i, true).FirstOrDefault();
@@ -77,6 +80,9 @@ namespace Portable_Simulacrum
                 {
                     btn.Tag = new Data.ModData(mod, name, desc, level);
                     btn.Text = name;
+                    nlr = (NumericLeftRight)Controls.Find("nlrMod" + i, true).FirstOrDefault();
+                    nlr.NumericUpDown.Maximum = mod.maxLevel;
+                    nlr.NumericUpDown.Value = level;
                     return true;
                 }
             }
@@ -186,10 +192,11 @@ namespace Portable_Simulacrum
             btnAddMod.Enabled = true;
         }
 
-        private void btn_MouseDown(Button btn, MouseEventArgs e)
+        private void btn_MouseDown(Button btn, NumericLeftRight nlr, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right) return;
-            lastDrag = btn;
+            lastDragBtn = btn;
+            lastDragNlr = nlr;
             btn.DoDragDrop(btn.Tag, DragDropEffects.Copy | DragDropEffects.Move);
         }
         private void btn_DragEnter(DragEventArgs e)
@@ -199,49 +206,53 @@ namespace Portable_Simulacrum
             else
                 e.Effect = DragDropEffects.None;
         }
-        private void btn_DragDrop(Button btn, DragEventArgs e)
+        private void btn_DragDrop(Button btn, NumericLeftRight nlr, DragEventArgs e)
         {
             Data.ModData modData = ((Data.ModData)e.Data.GetData(typeof(Data.ModData))).Clone();
-            lastDrag.Tag = btn.Tag;
-            lastDrag.Text = btn.Text;
+            lastDragBtn.Tag = btn.Tag;
+            lastDragBtn.Text = btn.Text;
+            lastDragNlr.NumericUpDown.Maximum = nlr.NumericUpDown.Maximum;
+            lastDragNlr.NumericUpDown.Value = nlr.NumericUpDown.Value;
             btn.Tag = modData;
             btn.Text = modData.description;
+            nlr.NumericUpDown.Maximum = modData.mod.maxLevel;
+            nlr.NumericUpDown.Value = modData.level;
             ShowStats();
         }
 
-        private void btnMod1_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod1, e); }
+        private void btnMod1_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod1, nlrMod1, e); }
         private void btnMod1_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod1_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod1, e); }
+        private void btnMod1_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod1, nlrMod1, e); }
 
-        private void btnMod2_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod2, e); }
+        private void btnMod2_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod2, nlrMod2, e); }
         private void btnMod2_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod2_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod2, e); }
+        private void btnMod2_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod2, nlrMod2, e); }
 
-        private void btnMod3_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod3, e); }
+        private void btnMod3_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod3, nlrMod3, e); }
         private void btnMod3_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod3_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod3, e); }
+        private void btnMod3_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod3, nlrMod3, e); }
 
-        private void btnMod4_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod4, e); }
+        private void btnMod4_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod4, nlrMod4, e); }
         private void btnMod4_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod4_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod4, e); }
+        private void btnMod4_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod4, nlrMod4, e); }
 
-        private void btnMod5_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod5, e); }
+        private void btnMod5_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod5, nlrMod5, e); }
         private void btnMod5_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod5_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod5, e); }
+        private void btnMod5_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod5, nlrMod5, e); }
 
-        private void btnMod6_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod6, e); }
+        private void btnMod6_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod6, nlrMod6, e); }
         private void btnMod6_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod6_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod6, e); }
+        private void btnMod6_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod6, nlrMod6, e); }
 
-        private void btnMod7_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod7, e); }
+        private void btnMod7_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod7, nlrMod7, e); }
         private void btnMod7_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod7_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod7, e); }
+        private void btnMod7_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod7, nlrMod7, e); }
 
-        private void btnMod8_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod8, e); }
+        private void btnMod8_MouseDown(object sender, MouseEventArgs e) { btn_MouseDown(btnMod8, nlrMod8, e); }
         private void btnMod8_DragEnter(object sender, DragEventArgs e) { btn_DragEnter(e); }
-        private void btnMod8_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod8, e); }
+        private void btnMod8_DragDrop(object sender, DragEventArgs e) { btn_DragDrop(btnMod8, nlrMod8, e); }
 
-        private void btnMod_Click(Button btn, MouseEventArgs e)
+        private void btnMod_Click(Button btn, NumericLeftRight nlr, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) return;
             if (!btn.ClientRectangle.Contains(e.Location)) return;
@@ -250,17 +261,33 @@ namespace Portable_Simulacrum
             ((BindingSource)cbbModList.DataSource).Add(new KeyValuePair<string, Mod>(modData.name, modData.mod));
             btn.Tag = new Data.ModData(new Mod(), "", "", 0);
             btn.Text = "";
+            nlr.NumericUpDown.Value = nlr.NumericUpDown.Maximum = 0;
             ShowStats();
         }
 
-        private void btnMod1_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod1, e); }
-        private void btnMod2_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod2, e); }
-        private void btnMod3_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod3, e); }
-        private void btnMod4_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod4, e); }
-        private void btnMod5_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod5, e); }
-        private void btnMod6_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod6, e); }
-        private void btnMod7_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod7, e); }
-        private void btnMod8_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod8, e); }
+        private void btnMod1_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod1, nlrMod1, e); }
+        private void btnMod2_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod2, nlrMod2, e); }
+        private void btnMod3_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod3, nlrMod3, e); }
+        private void btnMod4_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod4, nlrMod4, e); }
+        private void btnMod5_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod5, nlrMod5, e); }
+        private void btnMod6_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod6, nlrMod6, e); }
+        private void btnMod7_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod7, nlrMod7, e); }
+        private void btnMod8_MouseUp(object sender, MouseEventArgs e) { btnMod_Click(btnMod8, nlrMod8, e); }
 
+        private void nlrMod_Click(NumericLeftRight nlr, Button btn)
+        {
+            Data.ModData modData = (Data.ModData)btn.Tag;
+            btn.Tag = new Data.ModData(modData.mod, modData.name, modData.description, (int)nlr.NumericUpDown.Value);
+            ShowStats();
+        }
+
+        private void nlrMod1_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod1, btnMod1); }
+        private void nlrMod2_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod2, btnMod2); }
+        private void nlrMod3_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod3, btnMod3); }
+        private void nlrMod4_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod4, btnMod4); }
+        private void nlrMod5_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod5, btnMod5); }
+        private void nlrMod6_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod6, btnMod6); }
+        private void nlrMod7_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod7, btnMod7); }
+        private void nlrMod8_ValueChanged(object sender, EventArgs e) { nlrMod_Click(nlrMod8, btnMod8); }
     }
 }

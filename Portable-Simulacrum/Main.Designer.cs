@@ -49,6 +49,14 @@
             this.btnMod6 = new System.Windows.Forms.Button();
             this.btnMod7 = new System.Windows.Forms.Button();
             this.btnMod8 = new System.Windows.Forms.Button();
+            this.nlrMod8 = new Portable_Simulacrum.NumericLeftRight();
+            this.nlrMod7 = new Portable_Simulacrum.NumericLeftRight();
+            this.nlrMod6 = new Portable_Simulacrum.NumericLeftRight();
+            this.nlrMod5 = new Portable_Simulacrum.NumericLeftRight();
+            this.nlrMod4 = new Portable_Simulacrum.NumericLeftRight();
+            this.nlrMod3 = new Portable_Simulacrum.NumericLeftRight();
+            this.nlrMod2 = new Portable_Simulacrum.NumericLeftRight();
+            this.nlrMod1 = new Portable_Simulacrum.NumericLeftRight();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnemyLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudModLevel)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +64,7 @@
             // btnCalc
             // 
             this.btnCalc.Enabled = false;
-            this.btnCalc.Location = new System.Drawing.Point(547, 375);
+            this.btnCalc.Location = new System.Drawing.Point(562, 425);
             this.btnCalc.Name = "btnCalc";
             this.btnCalc.Size = new System.Drawing.Size(75, 23);
             this.btnCalc.TabIndex = 10;
@@ -67,7 +75,7 @@
             // cbbEnemyType
             // 
             this.cbbEnemyType.FormattingEnabled = true;
-            this.cbbEnemyType.Location = new System.Drawing.Point(501, 293);
+            this.cbbEnemyType.Location = new System.Drawing.Point(516, 343);
             this.cbbEnemyType.Name = "cbbEnemyType";
             this.cbbEnemyType.Size = new System.Drawing.Size(121, 23);
             this.cbbEnemyType.TabIndex = 11;
@@ -75,7 +83,7 @@
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(433, 419);
+            this.lblResult.Location = new System.Drawing.Point(448, 469);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(0, 15);
             this.lblResult.TabIndex = 19;
@@ -83,7 +91,7 @@
             // lblEnemyType
             // 
             this.lblEnemyType.AutoSize = true;
-            this.lblEnemyType.Location = new System.Drawing.Point(428, 294);
+            this.lblEnemyType.Location = new System.Drawing.Point(443, 344);
             this.lblEnemyType.Name = "lblEnemyType";
             this.lblEnemyType.Size = new System.Drawing.Size(67, 15);
             this.lblEnemyType.TabIndex = 21;
@@ -92,7 +100,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(428, 337);
+            this.label1.Location = new System.Drawing.Point(443, 387);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 22;
@@ -100,7 +108,7 @@
             // 
             // nudEnemyLevel
             // 
-            this.nudEnemyLevel.Location = new System.Drawing.Point(502, 332);
+            this.nudEnemyLevel.Location = new System.Drawing.Point(517, 382);
             this.nudEnemyLevel.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -166,7 +174,7 @@
             // cbHeadshot
             // 
             this.cbHeadshot.AutoSize = true;
-            this.cbHeadshot.Location = new System.Drawing.Point(436, 379);
+            this.cbHeadshot.Location = new System.Drawing.Point(451, 429);
             this.cbHeadshot.Name = "cbHeadshot";
             this.cbHeadshot.Size = new System.Drawing.Size(59, 19);
             this.cbHeadshot.TabIndex = 30;
@@ -176,7 +184,7 @@
             // lblStats
             // 
             this.lblStats.AutoSize = true;
-            this.lblStats.Location = new System.Drawing.Point(60, 291);
+            this.lblStats.Location = new System.Drawing.Point(75, 341);
             this.lblStats.Name = "lblStats";
             this.lblStats.Size = new System.Drawing.Size(0, 15);
             this.lblStats.TabIndex = 31;
@@ -186,7 +194,7 @@
             this.btnMod1.AllowDrop = true;
             this.btnMod1.Location = new System.Drawing.Point(48, 65);
             this.btnMod1.Name = "btnMod1";
-            this.btnMod1.Size = new System.Drawing.Size(150, 100);
+            this.btnMod1.Size = new System.Drawing.Size(151, 100);
             this.btnMod1.TabIndex = 32;
             this.btnMod1.UseVisualStyleBackColor = true;
             this.btnMod1.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod1_DragDrop);
@@ -199,7 +207,7 @@
             this.btnMod2.AllowDrop = true;
             this.btnMod2.Location = new System.Drawing.Point(204, 65);
             this.btnMod2.Name = "btnMod2";
-            this.btnMod2.Size = new System.Drawing.Size(150, 100);
+            this.btnMod2.Size = new System.Drawing.Size(151, 100);
             this.btnMod2.TabIndex = 33;
             this.btnMod2.UseVisualStyleBackColor = true;
             this.btnMod2.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod2_DragDrop);
@@ -212,7 +220,7 @@
             this.btnMod3.AllowDrop = true;
             this.btnMod3.Location = new System.Drawing.Point(360, 65);
             this.btnMod3.Name = "btnMod3";
-            this.btnMod3.Size = new System.Drawing.Size(150, 100);
+            this.btnMod3.Size = new System.Drawing.Size(151, 100);
             this.btnMod3.TabIndex = 34;
             this.btnMod3.UseVisualStyleBackColor = true;
             this.btnMod3.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod3_DragDrop);
@@ -225,7 +233,7 @@
             this.btnMod4.AllowDrop = true;
             this.btnMod4.Location = new System.Drawing.Point(516, 65);
             this.btnMod4.Name = "btnMod4";
-            this.btnMod4.Size = new System.Drawing.Size(150, 100);
+            this.btnMod4.Size = new System.Drawing.Size(151, 100);
             this.btnMod4.TabIndex = 35;
             this.btnMod4.UseVisualStyleBackColor = true;
             this.btnMod4.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod4_DragDrop);
@@ -236,9 +244,9 @@
             // btnMod5
             // 
             this.btnMod5.AllowDrop = true;
-            this.btnMod5.Location = new System.Drawing.Point(48, 171);
+            this.btnMod5.Location = new System.Drawing.Point(48, 199);
             this.btnMod5.Name = "btnMod5";
-            this.btnMod5.Size = new System.Drawing.Size(150, 100);
+            this.btnMod5.Size = new System.Drawing.Size(151, 100);
             this.btnMod5.TabIndex = 36;
             this.btnMod5.UseVisualStyleBackColor = true;
             this.btnMod5.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod5_DragDrop);
@@ -249,9 +257,9 @@
             // btnMod6
             // 
             this.btnMod6.AllowDrop = true;
-            this.btnMod6.Location = new System.Drawing.Point(204, 171);
+            this.btnMod6.Location = new System.Drawing.Point(204, 199);
             this.btnMod6.Name = "btnMod6";
-            this.btnMod6.Size = new System.Drawing.Size(150, 100);
+            this.btnMod6.Size = new System.Drawing.Size(151, 100);
             this.btnMod6.TabIndex = 37;
             this.btnMod6.UseVisualStyleBackColor = true;
             this.btnMod6.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod6_DragDrop);
@@ -262,9 +270,9 @@
             // btnMod7
             // 
             this.btnMod7.AllowDrop = true;
-            this.btnMod7.Location = new System.Drawing.Point(360, 171);
+            this.btnMod7.Location = new System.Drawing.Point(360, 199);
             this.btnMod7.Name = "btnMod7";
-            this.btnMod7.Size = new System.Drawing.Size(150, 100);
+            this.btnMod7.Size = new System.Drawing.Size(151, 100);
             this.btnMod7.TabIndex = 38;
             this.btnMod7.UseVisualStyleBackColor = true;
             this.btnMod7.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod7_DragDrop);
@@ -275,9 +283,9 @@
             // btnMod8
             // 
             this.btnMod8.AllowDrop = true;
-            this.btnMod8.Location = new System.Drawing.Point(516, 171);
+            this.btnMod8.Location = new System.Drawing.Point(516, 199);
             this.btnMod8.Name = "btnMod8";
-            this.btnMod8.Size = new System.Drawing.Size(150, 100);
+            this.btnMod8.Size = new System.Drawing.Size(151, 100);
             this.btnMod8.TabIndex = 39;
             this.btnMod8.UseVisualStyleBackColor = true;
             this.btnMod8.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnMod8_DragDrop);
@@ -285,11 +293,83 @@
             this.btnMod8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMod8_MouseDown);
             this.btnMod8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMod8_MouseUp);
             // 
+            // nlrMod8
+            // 
+            this.nlrMod8.Location = new System.Drawing.Point(517, 298);
+            this.nlrMod8.Name = "nlrMod8";
+            this.nlrMod8.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod8.TabIndex = 47;
+            this.nlrMod8.ValueChanged += new System.EventHandler(this.nlrMod8_ValueChanged);
+            // 
+            // nlrMod7
+            // 
+            this.nlrMod7.Location = new System.Drawing.Point(361, 298);
+            this.nlrMod7.Name = "nlrMod7";
+            this.nlrMod7.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod7.TabIndex = 46;
+            this.nlrMod7.ValueChanged += new System.EventHandler(this.nlrMod7_ValueChanged);
+            // 
+            // nlrMod6
+            // 
+            this.nlrMod6.Location = new System.Drawing.Point(205, 298);
+            this.nlrMod6.Name = "nlrMod6";
+            this.nlrMod6.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod6.TabIndex = 45;
+            this.nlrMod6.ValueChanged += new System.EventHandler(this.nlrMod6_ValueChanged);
+            // 
+            // nlrMod5
+            // 
+            this.nlrMod5.Location = new System.Drawing.Point(49, 298);
+            this.nlrMod5.Name = "nlrMod5";
+            this.nlrMod5.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod5.TabIndex = 44;
+            this.nlrMod5.ValueChanged += new System.EventHandler(this.nlrMod5_ValueChanged);
+            // 
+            // nlrMod4
+            // 
+            this.nlrMod4.Location = new System.Drawing.Point(517, 164);
+            this.nlrMod4.Name = "nlrMod4";
+            this.nlrMod4.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod4.TabIndex = 43;
+            this.nlrMod4.ValueChanged += new System.EventHandler(this.nlrMod4_ValueChanged);
+            // 
+            // nlrMod3
+            // 
+            this.nlrMod3.Location = new System.Drawing.Point(361, 164);
+            this.nlrMod3.Name = "nlrMod3";
+            this.nlrMod3.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod3.TabIndex = 42;
+            this.nlrMod3.ValueChanged += new System.EventHandler(this.nlrMod3_ValueChanged);
+            // 
+            // nlrMod2
+            // 
+            this.nlrMod2.Location = new System.Drawing.Point(205, 164);
+            this.nlrMod2.Name = "nlrMod2";
+            this.nlrMod2.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod2.TabIndex = 41;
+            this.nlrMod2.ValueChanged += new System.EventHandler(this.nlrMod2_ValueChanged);
+            // 
+            // nlrMod1
+            // 
+            this.nlrMod1.Location = new System.Drawing.Point(49, 164);
+            this.nlrMod1.Name = "nlrMod1";
+            this.nlrMod1.Size = new System.Drawing.Size(149, 25);
+            this.nlrMod1.TabIndex = 40;
+            this.nlrMod1.ValueChanged += new System.EventHandler(this.nlrMod1_ValueChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 597);
+            this.Controls.Add(this.nlrMod8);
+            this.Controls.Add(this.nlrMod7);
+            this.Controls.Add(this.nlrMod6);
+            this.Controls.Add(this.nlrMod5);
+            this.Controls.Add(this.nlrMod4);
+            this.Controls.Add(this.nlrMod3);
+            this.Controls.Add(this.nlrMod2);
+            this.Controls.Add(this.nlrMod1);
             this.Controls.Add(this.btnMod8);
             this.Controls.Add(this.btnMod7);
             this.Controls.Add(this.btnMod6);
@@ -342,6 +422,14 @@
         private System.Windows.Forms.Button btnMod6;
         private System.Windows.Forms.Button btnMod7;
         private System.Windows.Forms.Button btnMod8;
+        private NumericLeftRight nlrMod1;
+        private NumericLeftRight nlrMod2;
+        private NumericLeftRight nlrMod3;
+        private NumericLeftRight nlrMod4;
+        private NumericLeftRight nlrMod5;
+        private NumericLeftRight nlrMod6;
+        private NumericLeftRight nlrMod7;
+        private NumericLeftRight nlrMod8;
     }
 }
 
